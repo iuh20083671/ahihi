@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chủ</title>
+    <link rel="stylesheet" href="./Css/edtit.css">
+    <link rel="stylesheet" href="./BS4/css/bootstrap.min.css">
+    <script src="./jquery/jquery-3.6.0.min.js"></script>
+    <script src="./BS4/js/bootstrap.bundle.min.js"></script>
+    <script src="./BS4/js/bootstrap.min.js"></script>
+    <script src="./JavaScripts/Register.js"></script>
+    <style>
+        #myBtn {
+            /* display: none; */
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            z-index: 99999999999999999999999999;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: red;
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 4px;
+        }
+
+        #myBtn:hover {
+            background-color: #555;
+        }
+    </style>
+
+    <script>
+        //Get the button
+        var mybutton = document.getElementById("myBtn");
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+</head>
+
+<body>
+    <header class="row-cols-12 w-100 bg" style="padding: 0 150px; position: fixed; z-index: 999999;">
+
+        <div class="row col-sm-12" id="header">
+            <div class="justify-content-between w-100" id="header2" style="display: flex;">
+                <div class="col-sm-2">
+                    <a href="./index.html" class="  d-flex justify-content-center align-items-center">
+                        <img src="./img/bia.png" alt="" class="w-100">
+                    </a>
+                </div>
+                <div class="d-flex justify-content-between col-sm-6">
+                    <div class="d-flex align-items-center">
+                        <a href="./html/Register.html" class="btn mr-1 dk">
+                            Đăng ký
+                        </a>
+                        <button type="button" class="btn dn" data-toggle="modal" data-target="#modal_LogIn">
+                            Đăng nhập
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="modal_LogIn" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 style="text-align:center">Đăng nhập</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-warning" type="button">Tài khoản</button>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Username" id="TK"
+                                                aria-label="Username">
+                                            <span id="erroTK" class="text-danger"></span>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-warning" type="button">Mật khẩu</button>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Password" id="passTK"
+                                                aria-label="Password" aria-describedby="button-addon2">
+                                            <span class="text-danger" id="erroPassTK"></span>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
+                                            <button type="button" id="btnSuccess" class="btn btn-success">Đăng nhập</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="" type="button" class="btn-cart mr-0" data-toggle="modal" data-target="#cart" style="display: inline-block; width: 100px; height: 100%;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            fill="currentColor" class="bi bi-bag-check icon-cart" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M10.854 8.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+                            <path
+                                d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+                        </svg>
+                        <p class="soluongcart"></p>
+                    </button>
+
+                        <div class="alert border-success bg-view" id="cart-con">
+                            <!-- danh sach san pham -->
+                            [ Đang rỗng ]
+                        </div>
+                    </a>
+                    <form class="navbar form-inline nava-search">
+                        <input class=" form-control mr-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="icon-search" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                height="16" fill="currentColor" class="bi bi-search " viewBox="0 0 16 16">
+                                <path
+                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                            </svg></button>
+                    </form>
+
+                </div>
+            </div>
+            <ul id="header-menu" class="menu d-flex align-items-center w-100"
+                style="list-style: none; justify-content: space-around;">
+                <li class="nav-item">
+                    <a class="nav-link " href="index.html">TRANG CHỦ</a>
+                </li>
+
+
+                <li class="nav-item main-menu">
+                    <a class="nav-link dropdown-toggle">DANH MỤC SẢN PHẨM</a>
+                    <div class="sub-menu">
+                        <a class="dropdown-item" href="#tiengviet" id="nhan-tiengviet">Sách Tiếng Việt</a>
+                        <a class="dropdown-item" href="#ngoaingu" id="nhan-ngoaingu">Sách Ngoại Ngữ</a>
+                        <a class="dropdown-item" href="#truyentranh" id="nhan-truyentranh">Truyện Tranh</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#All" id="nhan-all">Tất Cả Thể Loại</a>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="./html/Insurance.html">CHÍNH SÁCH BẢO HÀNH</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="./html/GioiThieu.html">GIỚI THIỆU</a>
+                </li>
+
+            </ul>
+
+            <script>
+                var prevScrollpos = window.pageYOffset;
+                window.onscroll = function () {
+                    var currentScrollPos = window.pageYOffset;
+                    if (prevScrollpos > currentScrollPos) {
+                        document.getElementById("header2").style.display = 'flex';
+                    } else {
+                        document.getElementById("header2").style.display = 'none';
+                    }
+                    prevScrollpos = currentScrollPos;
+                }
+            </script>
+
+        </div>
+    </header>
+    <section id="section" class="container bg-section">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="./img/bigsale.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="./img/fahasa.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="./img/vnpay.jpg" class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev icon-next" type="button" data-target="#carouselExampleIndicators"
+                data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </button>
+            <button class="carousel-control-next icon-next" type="button" data-target="#carouselExampleIndicators"
+                data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </button>
+        </div>
+        <h3 class="alert mt-3 nhan-style" id="tiengviet">SÁCH TIẾNG VIỆT</h3>
+        <div class="container" style="margin-top: 20px;" id="list_CT">
+            <div class="row row-cols-5">
+                <a href="./html/ChiTietSanPham.html" class="col border text-decoration-none">
+                    <img src="./img/muahe.jpg" class="w-100 alert" alt="">
+                    <h6 class="alert alert-light " style="font-size: 14px;">GỬI NGƯỜI TỪNG SỐNG TRONG MÙA HÈ NĂM ẤY</h6>
+                    <p href="" style="text-decoration: none;" class="btn btn-outline-success">100.000₫</p>
+                     <br> Yuuri Mizuno
+                    <ul style="font-size: 12px;" class="alert">
+                        
+                        <li>Sách tiếng Việt</li>
+                    </ul>
+                </a>
+                <a href="./html/ChiTietSanPham.html" class="col border text-decoration-none">
+                    <img src="./img/songmon.jpg" class="w-100 alert" alt="">
+                    <h6 class="alert alert-light " style="font-size: 14px;">SỐNG MÒN</h6>
+                    <p href="" style="text-decoration: none;" class="btn btn-outline-success">100.000₫</p>
+                    <br> Nam Cao
+                    <ul style="font-size: 12px;" class="alert">
+                        <li>Sách tiếng Việt</li> 
+                    </ul>
+                </a>
+                <a href="./html/ChiTietSanPham.html" class="col border text-decoration-none">
+                    <img src="./img/cuocdoi.jpg" class="w-100 alert" alt="">
+                    <h6 class="alert alert-light " style="font-size: 14px;">CUỘC ĐỜI NGẮN LẮM ĐỪNG ÔM MUỘN PHIỀN</h6>
+                    <p href="" style="text-decoration: none;" class="btn btn-outline-success">100.000₫</p>
+                    <br> Mộc Nhi
+                    <ul style="font-size: 12px;" class="alert">                    
+                        <li>Sách tiếng Việt</li>
+                    </ul>
+                </a>
+                <a href="./html/ChiTietSanPham.html" class="col border text-decoration-none">
+                    <img src="./img/hanoi.jpg" class="w-100 alert" alt="">
+                    <h6 class="alert alert-light " style="font-size: 14px;">HÀ NỘI CÒN MỘT CHÚT NÀY</h6>
+                    <p href="" style="text-decoration: none;" class="btn btn-outline-success">100.000₫</p>
+                    <br> Nguyễn Ngọc Tiến
+                    <ul style="font-size: 12px;" class="alert">
+                        <li>Sách tiếng Việt</li>
+                    </ul>
+                </a>
+                <a href="./html/ChiTietSanPham.html" class="col border text-decoration-none">
+                    <img src="./img/lotan.png" class="w-100 alert" alt="">
+                    <h6 class="alert alert-light " style="font-size: 14px;">TRUYỆN NGẮN LỖ TẤN</h6>
+                    <p href="" style="text-decoration: none;" class="btn btn-outline-success">100.000₫</p>
+                    <br> Lỗ Tấn
+                    <ul style="font-size: 12px;" class="alert">
+                        <li>Sách tiếng Việt</li>
+                    </ul>
+                </a>
+                <a href="./html/ChiTietSanPham.html" class="col border text-decoration-none">
+                    <img src="./img/meocon.png" class="w-100 alert" alt="">
+                    <h6 class="alert alert-light " style="font-size: 14px;">CÁI TẾT CỦA MÈO CON</h6>
+                    <p href="" style="text-decoration: none;" class="btn btn-outline-success">100.00₫</p>
+                    <br> Thùy Duy - Nguyễn Đình Thi
+                    <ul style="font-size: 12px;" class="alert">
+                        <li>Sách tiếng Việt</li>
+                    </ul>
+                </a>
+            </div>
+        </div>
+
+        <h3 class="alert nhan-style mt-3" id="ngoaingu">SÁCH NGOẠI NGỮ</h3>
+        <div class="container" style="margin-top: 20px;" id="list_CT">
+            <div class="row row-cols-5">
+                <a href="./html/ChiTietSanPham.html" class="col border text-decoration-none">
+                    <img src="./img/phiendich.jpg" class="w-100 alert" alt="">
+                    <h6 class="alert alert-light " style="font-size: 14px;">KỸ NĂNG PHIÊN DỊCH</h6>
+                    <p href="" style="text-decoration: none;" class="btn btn-outline-success">100.000₫</p>
+                    <br> Komatsu Tatsuya
+                    <ul style="font-size: 12px;" class="alert">
+                        <li>Sách ngoại ngữ</li>               
+                    </ul>
+                </a>
+                <a href="./html/ChiTietSanPham.html" class="col border text-decoration-none">
+                    <img src="./img/mini.jpg" class="w-100 alert" alt="">
+                    <h6 class="alert alert-light " style="font-size: 14px;">MINI MAP 24H ENGLISH</h6>
+                    <p href="" style="text-decoration: none;" class="btn btn-outline-success">100.000₫</p>
+                    <br> Huyền Windy    
+                    <ul style="font-size: 12px;" class="alert">
+                        <li>Sách ngoại ngữ</li>
+
+                    </ul>
+                </a>
+                <a href="./html/ChiTietSanPham.html" class="col border text-decoration-none">
+                    <img src="./img/reading.jpg" class="w-100 alert" alt="">
+                    <h6 class="alert alert-light " style="font-size: 14px;">IELTS TỪ A-Z</h6>
+                    <p href="" style="text-decoration: none;" class="btn btn-outline-success">100.000₫</p>
+                    <br> Lưu Mình Hiển
+                    <ul style="font-size: 12px;" class="alert">
+                        <li>Sách ngoại ngữ</li>
+                    </ul>
+                </a>
+                <a href="./html/ChiTietSanPham.html" class="col border text-decoration-none">
+                    <img src="./img/lamquen.jpg" class="w-100 alert" alt="">
+                    <h6 class="alert alert-light " style="font-size: 14px;">LÀM QUEN VỚI VIẾT LUẬN TIẾNG ANH</h6>
+                    <p href="" style="text-decoration: none;" class="btn btn-outline-success">100.000₫</p>
+                    <br> Michael A. Putlack
+                    <ul style="font-size: 12px;" class="alert">
+                        <li>Sách ngoại ngữ</li>
+                    </ul>
+                </a>
+                <a href="./html/ChiTietSanPham.html" class="col border text-decoration-none">
+                    <img src="./img/nhat.png" class="w-100 alert" alt="">
+                    <h6 class="alert alert-light " style="font-size: 14px;">TỪ VỰNG TIẾNG NHẬT</h6>
+                    <p href="" style="text-decoration: none;" class="btn btn-outline-success">100.000₫</p>
+                    <br> Hoàng Quỳnh
+                    <ul style="font-size: 12px;" class="alert">
+                        <li>Sách ngoại ngữ</li>
+                    </ul>
+                </a>
+
+
+            </div>
+        </div>
+
+        <h3 class="alert nhan-style mt-3" id="truyentranh">TRUYỆN TRANH</h3>
+        <div class="container" style="margin-top: 20px;" id="list_CT">
+            <div class="row row-cols-5">
+                <a href="./html/ChiTietSanPham.html" class="col border text-decoration-none">
+                    <img src="./img/doremon.jpg" class="w-100 alert" alt="">
+                    <h6 class="alert alert-light " style="font-size: 14px;">DORAEMON - TẬP 1</h6>
+                    <p href="" style="text-decoration: none;" class="btn btn-outline-success">100.000₫</p>
+                    <br> Fujiko Fujio
+                    <ul style="font-size: 12px;" class="alert">
+                        <li>Truyện tranh</li>
+                    </ul>
+                </a>
+                <a href="./html/ChiTietSanPham.html" class="col border text-decoration-none">
+                    <img src="./img/shin.jpg" class="w-100 alert" alt="">
+                    <h6 class="alert alert-light " style="font-size: 14px;">SHIN - CẬU BÉ BÚT CHÌ - TẬP 1</h6>  
+                    <p href="" style="text-decoration: none;" class="btn btn-outline-success">100.000₫</p>
+                    <br> Yoshito Usui
+                    <ul style="font-size: 12px;" class="alert">
+                        <li>Truyện tranh</li>
+                    </ul>
+                </a>
+                <a href="./html/ChiTietSanPham.html" class="col border text-decoration-none">
+                    <img src="./img/conan.gif" class="w-100 alert" alt="">
+                    <h6 class="alert alert-light " style="font-size: 14px;">CONAN - TẬP 13</h6>
+                    <p href="" style="text-decoration: none;" class="btn btn-outline-success">100.000₫</p>
+                    <br> Gosho Aoyama
+                    <ul style="font-size: 12px;" class="alert">
+                        <li>Truyện tranh</li>
+                    </ul>
+                </a>
+
+
+
+
+            </div>
+        </div>
+
+        <h3 class="alert nhan-style mt-3" id="All">TẤT CẢ SẢN PHẨM</h3>
+        <div class="container" style="margin-top: 20px;" id="list_CT">
+            <div class="row row-cols-5">
+
+                <a href="./html/ChiTietSanPham.html" class="col border text-decoration-none">
+                    <img src="./img/muahe.jpg" class="w-100 alert" alt="">
+                    <h6 class="alert alert-light " style="font-size: 14px;">GỬI NGƯỜI TỪNG SỐNG TRONG MÙA HÈ NĂM ẤY</h6>
+                    <p href="" style="text-decoration: none;" class="btn btn-outline-success">100.000₫</p>
+                     <br> Yuuri Mizuno
+                    <ul style="font-size: 12px;" class="alert">
+                        
+                        <li>Sách tiếng Việt</li>
+                    </ul>
+                </a>
+                <a href="./html/ChiTietSanPham.html" class="col border text-decoration-none">
+                    <img src="./img/songmon.jpg" class="w-100 alert" alt="">
+                    <h6 class="alert alert-light " style="font-size: 14px;">SỐNG MÒN</h6>
+                    <p href="" style="text-decoration: none;" class="btn btn-outline-success">100.000₫</p>
+                    <br> Nam Cao
+                    <ul style="font-size: 12px;" class="alert">
+                        <li>Sách tiếng Việt</li> 
+                    </ul>
+                </a>
+                <a href="./html/ChiTietSanPham.html" class="col border text-decoration-none">
+                    <img src="./img/cuocdoi.jpg" class="w-100 alert" alt="">
+                    <h6 class="alert alert-light " style="font-size: 14px;">CUỘC ĐỜI NGẮN LẮM ĐỪNG ÔM MUỘN PHIỀN</h6>
+                    <p href="" style="text-decoration: none;" class="btn btn-outline-success">100.000₫</p>
+                    <br> Mộc Nhi
+                    <ul style="font-size: 12px;" class="alert">                    
+                        <li>Sách tiếng Việt</li>
+                    </ul>
+                </a>
+                <a href="./html/ChiTietSanPham.html" class="col border text-decoration-none">
+                    <img src="./img/hanoi.jpg" class="w-100 alert" alt="">
+                    <h6 class="alert alert-light " style="font-size: 14px;">HÀ NỘI CÒN MỘT CHÚT NÀY</h6>
+                    <p href="" style="text-decoration: none;" class="btn btn-outline-success">100.000₫</p>
+                    <br> Nguyễn Ngọc Tiến
+                    <ul style="font-size: 12px;" class="alert">
+                        <li>Sách tiếng Việt</li>
+                    </ul>
+                </a>
+                <a href="./html/ChiTietSanPham.html" class="col border text-decoration-none">
+                    <img src="./img/lotan.png" class="w-100 alert" alt="">
+                    <h6 class="alert alert-light " style="font-size: 14px;">TRUYỆN NGẮN LỖ TẤN</h6>
+                    <p href="" style="text-decoration: none;" class="btn btn-outline-success">100.000₫</p>
+                    <br> Lỗ Tấn
+                    <ul style="font-size: 12px;" class="alert">
+                        <li>Sách tiếng Việt</li>
+                    </ul>
+                </a>
+                <a href="./html/ChiTietSanPham.html" class="col border text-decoration-none">
+                    <img src="./img/meocon.png" class="w-100 alert" alt="">
+                    <h6 class="alert alert-light " style="font-size: 14px;">CÁI TẾT CỦA MÈO CON</h6>
+                    <p href="" style="text-decoration: none;" class="btn btn-outline-success">100.00₫</p>
+                    <br> Thùy Duy - Nguyễn Đình Thi
+                    <ul style="font-size: 12px;" class="alert">
+                        <li>Sách tiếng Việt</li>
+                    </ul>
+                </a>
+
+                <a href="./html/ChiTietSanPham.html" class="col border text-decoration-none">
+                    <img src="./img/phiendich.jpg" class="w-100 alert" alt="">
+                    <h6 class="alert alert-light " style="font-size: 14px;">KỸ NĂNG PHIÊN DỊCH</h6>
+                    <p href="" style="text-decoration: none;" class="btn btn-outline-success">100.000₫</p>
+                    <br> Komatsu Tatsuya
+                    <ul style="font-size: 12px;" class="alert">
+                        <li>Sách ngoại ngữ</li>               
+                    </ul>
+                </a>
+                <a href="./html/ChiTietSanPham.html" class="col border text-decoration-none">
+                    <img src="./img/mini.jpg" class="w-100 alert" alt="">
+                    <h6 class="alert alert-light " style="font-size: 14px;">MINI MAP 24H ENGLISH</h6>
+                    <p href="" style="text-decoration: none;" class="btn btn-outline-success">100.000₫</p>
+                    <br> Huyền Windy    
+                    <ul style="font-size: 12px;" class="alert">
+                        <li>Sách ngoại ngữ</li>
+
+                    </ul>
+                </a>
+                <a href="./html/ChiTietSanPham.html" class="col border text-decoration-none">
+                    <img src="./img/reading.jpg" class="w-100 alert" alt="">
+                    <h6 class="alert alert-light " style="font-size: 14px;">IELTS TỪ A-Z</h6>
+                    <p href="" style="text-decoration: none;" class="btn btn-outline-success">100.000₫</p>
+                    <br> Lưu Mình Hiển
+                    <ul style="font-size: 12px;" class="alert">
+                        <li>Sách ngoại ngữ</li>
+                    </ul>
+                </a>
+                <a href="./html/ChiTietSanPham.html" class="col border text-decoration-none">
+                    <img src="./img/lamquen.jpg" class="w-100 alert" alt="">
+                    <h6 class="alert alert-light " style="font-size: 14px;">LÀM QUEN VỚI VIẾT LUẬN TIẾNG ANH</h6>
+                    <p href="" style="text-decoration: none;" class="btn btn-outline-success">100.000₫</p>
+                    <br> Michael A. Putlack
+                    <ul style="font-size: 12px;" class="alert">
+                        <li>Sách ngoại ngữ</li>
+                    </ul>
+                </a>
+                <a href="./html/ChiTietSanPham.html" class="col border text-decoration-none">
+                    <img src="./img/nhat.png" class="w-100 alert" alt="">
+                    <h6 class="alert alert-light " style="font-size: 14px;">TỪ VỰNG TIẾNG NHẬT</h6>
+                    <p href="" style="text-decoration: none;" class="btn btn-outline-success">100.000₫</p>
+                    <br> Hoàng Quỳnh
+                    <ul style="font-size: 12px;" class="alert">
+                        <li>Sách ngoại ngữ</li>
+                    </ul>
+                </a>
+
+                <a href="./html/ChiTietSanPham.html" class="col border text-decoration-none">
+                    <img src="./img/doremon.jpg" class="w-100 alert" alt="">
+                    <h6 class="alert alert-light " style="font-size: 14px;">DORAEMON - TẬP 1</h6>
+                    <p href="" style="text-decoration: none;" class="btn btn-outline-success">100.000₫</p>
+                    <br> Fujiko Fujio
+                    <ul style="font-size: 12px;" class="alert">
+                        <li>Truyện tranh</li>
+                    </ul>
+                </a>
+                <a href="./html/ChiTietSanPham.html" class="col border text-decoration-none">
+                    <img src="./img/shin.jpg" class="w-100 alert" alt="">
+                    <h6 class="alert alert-light " style="font-size: 14px;">SHIN - CẬU BÉ BÚT CHÌ - TẬP 1</h6>  
+                    <p href="" style="text-decoration: none;" class="btn btn-outline-success">100.000₫</p>
+                    <br> Yoshito Usui
+                    <ul style="font-size: 12px;" class="alert">
+                        <li>Truyện tranh</li>
+                    </ul>
+                </a>
+                <a href="./html/ChiTietSanPham.html" class="col border text-decoration-none">
+                    <img src="./img/conan.gif" class="w-100 alert" alt="">
+                    <h6 class="alert alert-light " style="font-size: 14px;">CONAN - TẬP 13</h6>
+                    <p href="" style="text-decoration: none;" class="btn btn-outline-success">100.000₫</p>
+                    <br> Gosho Aoyama
+                    <ul style="font-size: 12px;" class="alert">
+                        <li>Truyện tranh</li>
+                    </ul>
+                </a>
+            </div>
+        </div>
+
+        <button onclick="topFunction()" id="myBtn" title="Về trang chủ"><svg xmlns="http://www.w3.org/2000/svg"
+                width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
+                <path fill-rule="evenodd"
+                    d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" />
+            </svg>
+        </button>
+
+
+    </section>
+    <footer class="container col-sm-12 bg-footer">
+        <div class="container">
+            <div class="row text-left">
+                <div class="col btn">
+                    <h6 class="alert" style="border-bottom: 1px solid black;">THỂ LOẠI</h6>
+                    <ul class="text-left nav-link" style="list-style: none;">
+                        <li class="text-left"><a href="#tiengviet" class="nav-link text-dark">Tiếng Việt</a></li>
+                        <li class="text-left"><a href="#ngoaingu" class="nav-link text-dark">Ngoại Ngữ</a></li>
+                        <li class="text-left"><a href="#truyentranh" class="nav-link text-dark">Truện Tranh</a></li>
+                        <li class="text-left"><a href="" class="nav-link text-dark">Tất cả thể loại</a></li>
+                    </ul>
+                </div>
+                <div class="col btn">
+                    <h6 class="alert" style="border-bottom: 1px solid black;">GIỚI THIỆU THÀNH VIÊN VÀ WEBSITE</h6>
+                    <ul class="text-left nav-link" style="list-style: none;">
+                        <li class="text-left"><a href="./html/GioiThieu.html" class="nav-link text-dark">Thành viên</a>
+                        </li>
+                        <li class="text-left"><a href="./html/GioiThieu.html" class="nav-link text-dark">Website</a>
+                        </li>
+                        <li class="text-left"><a href="./html/GioiThieu.html" class="nav-link text-dark">Giảng viên</a>
+                        </li>
+                        <li class="text-left"><a href="./html/GioiThieu.html" class="nav-link text-dark">Header</a></li>
+                        <li class="text-left"><a href="./html/GioiThieu.html" class="nav-link text-dark">Section</a>
+                        </li>
+                        <li class="text-left"><a href="./html/GioiThieu.html" class="nav-link text-dark">Footer</a></li>
+
+                    </ul>
+                </div>
+                <div class="col btn ">
+                    <h6 class="alert" style="border-bottom: 1px solid black;">CHÍNH SÁCH BẢO HÀNH</h6>
+                    <ul class="text-left" style="list-style: none;">
+                        <li class="text-left"><a href="./html/Insurance.html" class="nav-link text-dark">Đổi mới miễn
+                                phí</a></li>
+                        <li class="text-left"><a href="./html/Insurance.html" class="nav-link text-dark">Bảo hành 12
+                                tháng</a></li>
+                        <li class="text-left"><a href="./html/Insurance.html" class="nav-link text-dark">Chính sách bảo
+                                hành</a></li>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+        <p class="alert text-center" style="color: black; font-weight: lighter;">2022 © Bản quyền thuộc về Lương Trung Nguyên - Phạm Thúy Anh </p>
+
+    </footer>
+<!--Cart modal-->
+<div class="modal fade" id="cart" style="z-index: 999999" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Giỏ hàng</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="show-cart table">
+            
+          </table>
+          <div>Tổng tiền:  <span class="total-cart"></span></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+          <a href="./html/GioHang.html"><button type="button" class="btn btn-primary">Đặt ngay</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="./JavaScripts/cart.js"></script>
+</body>
+
+</html>
